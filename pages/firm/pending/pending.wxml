@@ -1,0 +1,113 @@
+<!--pages/firm/pending/pending.wxml-->
+<view>
+  <view class="headTop" style="padding-top:{{navTop}}rpx;height:{{navBtnHeight}}rpx;line-height:{{navBtnHeight}}rpx;padding-bottom:{{navBtnBottom}}rpx">
+      <view class="img">
+        <view class="block" bindtap="navBack"></view>
+        <image class="to" src="../../../static/bigBack.png"></image>
+      </view>
+    	<view class="view">{{firmData.driverName}}</view>
+  </view>
+  <view class="top clearfix marginTop" style="margin-top:{{navHeight}}rpx">
+    <image src="/static/pic17.png"></image>
+    <view class="txt">
+      <text>申请注册</text>
+      <text>等待审核</text>
+      <text class="color">审核成功</text>
+    </view>
+  </view>
+  <view class="center">
+    <view class="conten clearfix">
+      <text class="left">驾驶员姓名</text>
+      <text class="right">{{firmData.driverName}}</text>
+    </view>
+    <view class="conten clearfix">
+      <text class="left">车牌号码</text>
+      <text class="right">{{firmData.carNo}}</text>
+    </view>
+    <view class="conten clearfix">
+      <text class="left">身份证号码</text>
+      <text class="right">{{firmData.driverCard}}</text>
+    </view>
+    <view class="conten clearfix">
+      <text class="left">驾驶证号码</text>
+      <text class="right">{{firmData.driverNumber}}</text>
+    </view>
+    <view class="conten clearfix">
+      <text class="left">准驾车型</text>
+      <text class="right">{{firmData.drivingModel}}</text>
+    </view>
+    <view class="conten clearfix">
+      <text class="left">驾驶证有效期</text>
+      <text class="right">{{firmData.driverValidityStart}} 至 {{firmData.driverValidityEnd}}</text>
+    </view>
+    <view class="conten clearfix">
+      <text class="left">手机号码</text>
+      <text class="right">{{firmData.driverPhone}}</text>
+    </view>
+    
+    <view class="conten clearfix">
+      <text class="left">驾驶员附件</text>
+    </view>
+    <view class="pic">
+      <view class="box">
+        <view class="img">
+          <image src="{{firmData.drivingLicenseUrl}}" data-value="{{firmData.drivingLicenseUrl}}" bindtap="succ2" mode="aspectFit"></image>
+        </view>
+        <text>行驶证</text>
+      </view>
+      <view class="box">
+        <view class="img">
+          <image src="{{firmData.driverPath}}" data-value="{{firmData.driverPath}}" bindtap="succ2" mode="aspectFit"></image>
+        </view>
+        <text>驾驶证</text>
+      </view>
+      <view class="box">
+        <view class="img">
+          <image src="{{firmData.driverCardUrl}}" data-value="{{firmData.driverCardUrl}}" bindtap="succ2" mode="aspectFit"></image>
+        </view>
+        <text>驾驶员身份证</text>
+      </view>
+    </view>
+    <view class="butt clearfix">
+      <button bindtap="succ" class="success left">通过</button>
+      <button bindtap="fail" class="fail right">拒绝</button>
+    </view>
+  </view>
+</view>
+
+<view class="blockBox" hidden="{{!hidd2}}">
+  <view class="por" catchtap="por2">
+    <view class="poa child" catchtap="poa2">
+      
+      <text class="title">注册内容不符</text>
+      <form class="form2 form" bindsubmit="buttonSubmit2">
+        <view class="tit">
+          <text class="item">原因：</text>
+          <textarea bindinput="bindTextArea" bindblur="blurTextArea" value="{{textArea}}" maxlength="100" auto-height placeholder="请输入拒绝通过具体原因" />
+          <view class="viewNumber red" wx:if="{{jianBlean}}">
+            <view class="new left">{{jianNumber}}</view>
+            <view class="max left">/{{maxLength}}</view>
+          </view>
+          <view class="viewNumber" wx:else>
+            <view class="new left">{{jianNumber}}</view>
+            <view class="max left">/{{maxLength}}</view>
+          </view>
+        </view>
+        <view class="switch clearfix">
+          <text class="left">是否重新修改注册信息：</text>
+          <i-switch class="right" value="{{switchChecked}}" size="default" bind:change="switchChange" slot="footer">
+              <view slot="open">是</view>
+              <view slot="close">否</view>
+          </i-switch>
+          <!-- <switch class="right" checked="{{switchChecked}}" bindchange="switchChange"/> -->
+        </view>
+        <button form-type="submit" disabled="{{btnDisabled}}">确认提交</button>
+      </form>
+    </view>
+  </view>
+</view>
+<view class="blockBox" hidden="{{!hidd3}}">
+  <view class="por por3" catchtap="por3">
+    <image src="{{imgSrc}}" bindload="imageLoad" data-index="0" style="width:{{imagesWidth}}rpx;height:{{imagesHeight}}rpx;" mode="aspectFit"></image>
+  </view>
+</view>

@@ -1,0 +1,107 @@
+<view class="top" style="padding-top:{{navBtnHeight}}rpx">
+		<view class="userImg">
+			<image src="{{userImg}}"></image>
+		</view>
+			<view class="userInfo">
+				<view class="userName">挂靠推广员：{{userName}}</view>
+				<view class="userFirm">杭州松格科技有限公司</view>
+			</view>
+		</view>
+		<view class="center borderRadius margin">
+			<view class="content">
+				<view class="block first yellow" data-index="0" bindtap="next">
+					<image src="/static/pic02.png" mode="widthFix"></image>
+					<p>驾驶员推广码</p>
+				</view>
+			</view>
+			<view class="content">
+				<view class="block not" data-index="1" bindtap="next">
+					<image src="/static/pic03.png" mode="widthFix"></image>
+					<p>待审驾驶员</p>
+				</view>
+			</view>
+			<view class="content">
+				<view class="block blue" data-index="2" bindtap="next">
+					<image src="/static/pic04.png" mode="widthFix"></image>
+					<p>驾驶员清单</p>
+				</view>
+			</view>
+		</view>
+		<view class="bottom">
+			<p class="title margin">最新待审核驾驶员</p>
+			<view class="box">
+				<view class="block" wx:if="{{reView.length==0}}">
+					<text>{{listInfo}}</text>
+				</view>
+				<view class="block" wx:else>
+					<view wx:for="{{reView}}" :key="index" data-id="{{item.id}}" bindtap="go" class="cont clearfix borderRadius boxShadow">
+						<view class="firmImg left notB">
+							<image src="../../../static/pic05.png" alt=""></image>
+						</view>
+						<view class="firmInfo right">
+							<view class="firmName">
+								<view class="name">姓名：{{item.driverName}}</view>
+								<view class="staus not">待审</view>
+							</view>
+							<view class="firmPro">
+								<view class="pro left">车牌：{{item.carNo}}</view>
+								<view class="time right">申请时间：{{item.updateDate}}</view>
+							</view>
+						</view>
+					</view>
+				</view>
+				
+		</view>
+		<view class="point" wx:if="{{point}}">
+			<view class="box">
+				<view class="boxContent">
+					<view class="pointView">
+						提示
+					</view>
+					<view class="title">需要用户授权才能享受很好的微信服务.</view>
+					<view class="pointBtn">
+						<view class="firstBtn" bindtap="callOff">
+							取消
+						</view>
+						<view class="secondBtn">
+							授权
+							<button class="sbBtn" bindtap="shouquan" open-type='getUserInfo'></button>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+</view>
+<view class="blockBox" wx:if="{{tapBlockBox}}">
+	<view class="por" catchtap="tapBlock">
+		<view class="poa child"  catchtap="tapBlock1">
+			<text class="title">驾驶员推广码</text>
+			<form class="form2 form" bindsubmit="buttonSubmit2">
+				<view class="input">
+					<text>驾驶员姓名：</text>
+					<input type="text" name="yanzhen" placeholder="请输入驾驶员真实姓名"/>
+				</view>
+				<button form-type="submit">生成并分享</button>
+			</form>
+		</view>
+	</view>
+</view>
+<view class="point" wx:if="{{point2}}">
+    <view class="box">
+      <view class="boxContent">
+        <view class="pointView">
+          提示
+        </view>
+        <view class="title">分享链接已生成.</view>
+        <view class="pointBtn">
+          <view class="firstBtn" bindtap="callOff2">
+            取消
+          </view>
+          <view class="secondBtn">
+            去分享
+            <button class="sbBtn" open-type="share"></button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>

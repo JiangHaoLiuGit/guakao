@@ -1,0 +1,95 @@
+<!--pages/firm/success/success.wxml-->
+<view>
+  <view class="headTop" style="padding-top:{{navTop}}rpx;height:{{navBtnHeight}}rpx;line-height:{{navBtnHeight}}rpx;padding-bottom:{{navBtnBottom}}rpx">
+    <view class="img">
+      <view class="block" bindtap="navBack"></view>
+      <image class="to" src="../../../static/bigBack.png"></image>
+    </view>
+    
+    	<view class="view">{{frimObj.driverName}}</view>
+  </view>
+  <view class="top" style="margin-top:{{navHeight}}rpx">
+    <image src="/static/pic16.png"></image>
+    <view class="txt">
+      <text>申请注册</text>
+      <text>等待审核</text>
+      <text>审核成功</text>
+    </view>
+  </view>
+  <view class="center">
+    <view class="conten clearfix">
+      <text class="left">驾驶员姓名</text>
+      <text class="right">{{frimObj.driverName}}</text>
+    </view>
+    <view class="conten clearfix">
+      <text class="left">驾驶员码</text>
+      <text class="right">{{frimObj.driverCode}}</text>
+    </view>
+    <view class="conten clearfix">
+      <text class="left">车牌号码</text>
+      <text class="right">{{frimObj.carNo}}</text>
+    </view>
+    <view class="conten clearfix">
+      <text class="left">身份证号码</text>
+      <text class="right">{{frimObj.driverCard}}</text>
+    </view>
+
+    <view class="conten clearfix">
+      <text class="left">驾驶证号码</text>
+      <text class="right">{{frimObj.driverNumber}}</text>
+    </view>
+    <view class="conten clearfix">
+      <text class="left">准驾车型</text>
+      <text class="right">{{frimObj.drivingModel}}</text>
+    </view>
+    <view class="conten clearfix">
+      <text class="left">驾驶证有效期</text>
+      <text class="right">{{frimObj.driverValidityStart}} 至 {{frimObj.driverValidityEnd}}</text>
+    </view>
+    <view class="conten clearfix">
+      <text class="left">手机号码</text>
+      <text class="right">{{frimObj.driverPhone}}</text>
+    </view>
+    
+    <view class="conten clearfix">
+      <text class="left">驾驶员附件</text>
+    </view>
+    <view class="pic">
+      <view class="box">
+        <view class="img">
+          <image src="{{frimObj.drivingLicenseUrl}}" data-value="{{frimObj.drivingLicenseUrl}}" bindtap="succ" mode="aspectFit"></image>
+        </view>
+        <text>行驶证</text>
+      </view>
+      <view class="box">
+        <view class="img" >
+          <image src="{{frimObj.driverPath}}" data-value="{{frimObj.driverPath}}" bindtap="succ" mode="aspectFit"></image>
+        </view>
+        <text>驾驶证</text>
+      </view>
+      <view class="box">
+        <view class="img">
+          <image src="{{frimObj.driverCardUrl}}" data-value="{{frimObj.driverCardUrl}}" bindtap="succ" mode="aspectFit"></image>
+        </view>
+        <text>驾驶员身份证</text>
+      </view>
+    </view>
+  </view>
+  <view class="center">
+    
+    <view class="conten clearfix">
+      <text class="left">审核时间</text>
+      <text class="right">{{frimObj.updateDate}}</text>
+    </view>
+    <view class="conten clearfix">
+      <text class="left">审核人</text>
+      <text class="right">{{frimObj.openid}}</text>
+    </view>
+  </view>
+  <button class="btn" bindtap="return">返回</button>
+</view>
+<view class="blockBox" wx:if="{{hidd3 == true}}">
+  <view class="por por3" catchtap="por3">
+    <image src="{{imgSrc}}" bindload="imageLoad" data-index="0" style="width:{{imagesWidth}}rpx;height:{{imagesHeight}}rpx;" mode="widthFix"></image>
+  </view>
+</view>

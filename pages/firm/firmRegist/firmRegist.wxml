@@ -1,0 +1,124 @@
+<!--pages/firmRegist/firmRegist.wxml-->
+<view>
+  <view class="headTop" style="padding-top:{{navTop}}rpx;height:{{navBtnHeight}}rpx;line-height:{{navBtnHeight}}rpx;padding-bottom:{{navBtnBottom}}rpx">
+    <!-- <image class="to" src="../../../static/bigBack.png" class="left" bindtap="navBack"></image> -->
+    <view class="view">生成企业推广码</view>
+  </view>
+  <view class="xieyi marginTop clearfix" style="margin-top:{{navHeight}}rpx">
+  
+  </view>
+  <form bindsubmit="formSubmit">
+    <text wx:if="{{content != ''}}" class="failContent"><text>注册失败原因:</text><text>{{content}}</text></text>
+    <view class="formContent">
+      <text>驾驶员姓名：</text>
+      <input type="text" bindinput="inputedit" data-name="firmName" name="firmName" value="{{firmName}}" disabled="true" class="text"/>
+    </view>
+    <view class="formContent">
+      <text>驾驶员身份证：</text>
+      <input type="idcard" value="{{shenfenId}}" bindinput="inputedit" data-name="shenfenId" name="shenfenId" placeholder="身份证号码" class="text"/>
+      <view class="box idCard clearfix">
+        <view class="left">
+          <view class="addImg left contenter" bindtap="addImg" data-img="shenfen">
+            <image class="clickImg" wx:if="{{shenfen == ''}}" src="../../../static/pic09.png"></image>
+            <image class="image" wx:else  src="{{shenfen}}" mode="aspectFit"></image>
+          </view>
+          <view class="viewText right">
+            <text class="head" bindtap="addImg" data-img="shenfen">点击上传 驾驶员身份证</text>
+            <text class="txt">身份证信息清晰可见</text>
+            <text class="txt">大头像清晰</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="formContent">
+      <text>车牌号码：</text>
+      <input type="text" value="{{name5}}" bindinput="inputedit" data-name="name5" name="name5" placeholder="请输入车牌号码" class="text"/>
+      <view class="viewNumber red" wx:if="{{jianBlean}}">
+        请控制到1-10位之间
+      </view>
+    </view>
+    <!-- <view class="formContent">
+      <text>行驶证：</text>
+      <view class="box idCard clearfix">
+        <view class="left">
+          <view class="addImg left contenter" bindtap="addImg" data-img="xinshi">
+            <image class="clickImg" wx:if="{{xinshi == ''}}" src="../../../static/pic09.png"></image>
+            <image class="image" wx:else  src="{{xinshi}}" mode="aspectFit"></image>
+          </view>
+          <view class="viewText right">
+            <text class="head" bindtap="addImg" data-img="xinshi">点击上传 车辆行驶证</text>
+            <text class="txt">证件内容清晰可见</text>
+            <text class="txt">证件边框清晰</text>
+          </view>
+        </view>
+      </view>
+    </view> -->
+    <view class="formContent">
+      <text>驾驶证：</text>
+      <view class="box idCard clearfix">
+        <view class="left">
+          <view class="addImg left contenter" bindtap="addImg" data-img="jiashi">
+            <image class="clickImg" wx:if="{{jiashi == ''}}" src="../../../static/pic09.png"></image>
+            <image class="image" wx:else  src="{{jiashi}}" mode="aspectFit"></image>
+          </view>
+          <view class="viewText right">
+            <text class="head" bindtap="addImg" data-img="jiashi">点击上传 驾驶员驾驶证</text>
+            <text class="txt">证件内容清晰可见</text>
+            <text class="txt">证件边框清晰</text>
+          </view>
+        </view>
+      </view>
+      
+      
+    </view>
+    <view class="formContent por active">
+      <input type="number" value="{{jiashiId}}" bindinput="inputedit" data-name="jiashiId" name="jiashiId" maxlength="20" placeholder="自动获取驾驶证号码" class="text"/>
+    </view>
+    <view class="formContent por active">
+      <picker bindchange="bindPickerChange" value="{{valueIndex}}" range="{{ValueList}}" range-key="name" class="picker pickers">
+          <text style="margin-top:18rpx" wx:if="{{ValueText == ''}}">自动获取准驾车型</text>
+          <text style="margin-top:18rpx" wx:else>{{ValueText}}</text>
+          <!-- <input type="text" class="inputs" value="{{ValueText}}" placeholder="自动获取准驾车型" placeholder-style="color:#999999;font-size:28upx;"/> -->
+          <image src="../../../static/last.png"></image>
+			  </picker>
+    </view>
+    <view class="viewActive">
+      <view class="formContent por pos">
+        <text class="poa txt" wx:if="{{endedTime2 == ''}}">有效期开始</text>
+        <timerPicker tim="" bind:onPickerChange="onPickerChange3" data-index="2" date="{{endedTime2}}"></timerPicker>
+      </view>
+      <view class="formText">
+        至
+      </view>
+      <view class="formContent por pos">
+        <text class="poa txt" wx:if="{{endedTime3 == ''}}">有效期结束</text>
+        <timerPicker tim="长期" date="{{endedTime3}}" bind:onPickerChange="onPickerChange3" data-index="3"></timerPicker>
+      </view>
+    </view>
+    
+
+    <!-- <view class="formContent">
+      <text>企业法人：</text>
+      <input type="text" value="{{name1}}" bindinput="inputedit" data-name="name1" name="name1" placeholder="企业法人姓名" class="text"/>
+      <view class="viewNumber red" wx:if="{{nameBlean1}}">
+        请控制到1-5位之间
+      </view>
+    </view> -->
+    
+    <view class="formContent" hidden="{{switchChecked}}">
+      <text>驾驶员手机号码：</text>
+      <view class="phoneView clearfix">
+        <input type="number" name="name2" value="{{name2}}" bindinput="inputedit" data-name="name2" placeholder="手机号码" maxlength="11" bindblur="iphoneYanBlur" class="text left {{name2Status == true?'sucess':''}}{{name2Status == false&&name2Status != ''?'fail':''}}"/>
+        <button class="contenter right" bindtap="yan">{{yanzhen}}</button>
+      </view>
+      <input type="number" name="name2Id" value="{{name2Id}}" bindinput="inputedit" data-name="name2Id" bindblur="yanCode" maxlength="4" placeholder="请输入手机验证码" class="text"/>
+    </view>
+    
+
+    <!-- disabled -->
+    <button form-type="submit" class="submit">确认提交</button>
+
+  </form>
+
+</view>
